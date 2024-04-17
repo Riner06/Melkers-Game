@@ -11,23 +11,6 @@
   let characterPosY = 300
   let spriteX = 0;
   let spriteY = 0;
-  
-
-  // function drawBackground() {
-  //   const img = new Image();
-  //   img.src = "./Sprites/ground.png";
-  //   img.onload = () => {
-  //     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-  //   }
-  // }
-  
-  // function drawCharacter(){
-  //   const imgHero = new Image();
-  //   imgHero.src = "./Sprites/hero-sheet.png";
-  //   imgHero.onload = () => {
-  //     ctx.drawImage(imgHero,0,0,characterWidth,characterHeight,characterPosX,characterPosY,128,128);
-  //   }
-  // }
 
   
 const imgGround = new Image();
