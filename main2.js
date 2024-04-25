@@ -22,6 +22,9 @@ imgSky.src = "./Sprites/sky.png";
 const imgHero = new Image();
 imgHero.src = "./Sprites/hero-sheet.png";
 
+const imgShadow = new Image();
+imgShadow.src = "./Sprites/shadow.png";
+
 const tileSheet = new Image()
 tileSheet.src = "./Sprites/tilesheet.png"
 
@@ -72,28 +75,26 @@ function walkable(row, column){
 function popUp(object){
   let text;
   let person = prompt("What's the name of a :", object);
-  if(text == "Arból" | "Arbol" | "arbol"){
-    prompt("Correct")
+  if(person == "Arból" | person =="Arbol" | person == "arbol"){
+    alert("Correct")
+  }
+  else if(person == "Casa" | person =="casa" | person == "arbol"){
+    alert("Correct")
   }
   else{
-    prompt("Try again")
+    alert("Try again")
   }
-  // if (person == null || person == "") {
-  //   popUp("User Cancelled")
-  // } else {
-  //   text = "Hello " + person + "! How are you today?";
-  // }
   document.getElementById("demo").innerHTML = text;
 }
 function gameEvent(row,column){
   let eventTiles = [17,20]
   if (map.getTile(row,column) == 17) {
-    console.log("TRÄD!")
-    popUp("Träd")
+    console.log("Tree!")
+    popUp("Tree in Spanish")
   }
   else if(map.getTile(row,column) == 20) {
-    console.log("HUS!")
-    popUp("Hus")
+    console.log("House!")
+    popUp("House in Spanish")
   }
   if (row >= 0 && row < map.rows && column >= 0 && column < map.cols) {
     // Check if the tile is in the unwalkableTiles array
@@ -152,6 +153,7 @@ if (imgHero.complete) {
     drawBackground(); // Redraw the background
     drawTileMap(); // Redraw the tilemap
     const [x, y] = getXAndYPosition(characterRow, characterColumn)
+    ctx.drawImage(imgShadow,0,0,characterWidth,characterHeight,x,y,128,128)
 
   ctx.drawImage(imgHero, spriteX, spriteY, characterWidth, characterHeight, x, y, 128, 128);
 }
