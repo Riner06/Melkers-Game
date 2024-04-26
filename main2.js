@@ -74,11 +74,12 @@ function walkable(row, column){
 
 function popUp(object){
   let text;
-  let person = prompt("What's the name of a :", object);
-  if(person == "Arból" | person =="Arbol" | person == "arbol"){
+  let person = prompt("What's the name of a :", object).toLowerCase()
+  
+  if(person == "arból" | person =="arbol"){
     alert("Correct")
   }
-  else if(person == "Casa" | person =="casa" | person == "arbol"){
+  else if(person == "casa"){
     alert("Correct")
   }
   else{
