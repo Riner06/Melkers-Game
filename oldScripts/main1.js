@@ -14,16 +14,16 @@ let spriteY = 0;
 
 
 const imgGround = new Image();
-imgGround.src = "./Sprites/ground.png";
+imgGround.src = "./images/ground.png";
 
 const imgSky = new Image();
-imgSky.src = "./Sprites/sky.png";
+imgSky.src = "./images/sky.png";
 
 const imgHero = new Image();
-imgHero.src = "./Sprites/hero-sheet.png";
+imgHero.src = "./images/hero-sheet.png";
 
 const tileSheet = new Image()
-tileSheet.src = "./Sprites/spritesheet.png"
+tileSheet.src = "./images/imagesheet.png"
 //GÖr om så att kolumnerna ej är nollbaserade
 const map = {
   cols: 15,
@@ -42,8 +42,8 @@ const map = {
     
   ],
   getTile(col, row) {
-    const index = row * map.cols + col;
-    return this.tiles[index];
+    const game = row * map.cols + col;
+    return this.tiles[game];
   },
 };
 
@@ -61,9 +61,9 @@ function tilemap(){
       const tile = map.getTile(c, r);
       if (tile !== 0) {
         
-        const tileIndex = tile - 1; // assuming tiles are 1-indexed
-        const sourceX = (tileIndex % numCols) * tileWidth;
-        const sourceY = Math.floor(tileIndex / numCols) * tileHeight;
+        const tilegame = tile - 1; // assuming tiles are 1-gameed
+        const sourceX = (tilegame % numCols) * tileWidth;
+        const sourceY = Math.floor(tilegame / numCols) * tileHeight;
         // 0 => empty tile
         ctx.drawImage(
           

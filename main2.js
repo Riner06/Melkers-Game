@@ -14,19 +14,19 @@ let spriteY = 0;
 
 
 const imgGround = new Image();
-imgGround.src = "./Sprites/ground.png";
+imgGround.src = "../images/ground.png";
 
 const imgSky = new Image();
-imgSky.src = "./Sprites/sky.png";
+imgSky.src = "../images/sky.png";
 
 const imgHero = new Image();
-imgHero.src = "./Sprites/hero-sheet.png";
+imgHero.src = "../images/hero-sheet.png";
 
 const imgShadow = new Image();
-imgShadow.src = "./Sprites/shadow.png";
+imgShadow.src = "../images/shadow.png";
 
 const tileSheet = new Image()
-tileSheet.src = "./Sprites/tilesheet.png"
+tileSheet.src = "../images/tilesheet.png"
 
 
 //GÖr om så att kolumnerna ej är nollbaserade
@@ -111,16 +111,16 @@ function drawTileMap(){
   const tileWidth = tileSheetWidth / numberOfColumns; 
   const tileHeight = tileSheetHeight / numberOfRows; 
 
-  for(let rowIndex = 0; rowIndex < map.rows; rowIndex++) {
-    for (let columnIndex = 0; columnIndex < map.cols; columnIndex++) { 
-      const tile = map.getTile(rowIndex, columnIndex);
+  for(let rowgame = 0; rowgame < map.rows; rowgame++) {
+    for (let columngame = 0; columngame < map.cols; columngame++) { 
+      const tile = map.getTile(rowgame, columngame);
       if (tile !== 0) {
-        //Replace tileIndex with row column acess of tileSheet
-        const tileIndex = tile - 1; // assuming tiles are 1-indexed
-        const tileX = (tileIndex % numberOfColumns) * tileWidth;
-        const tileY = Math.floor(tileIndex / numberOfColumns) * tileHeight;
-        const targetX = columnIndex * map.tileSize;
-        const targetY = rowIndex * map.tileSize;
+        //Replace tilegame with row column acess of tileSheet
+        const tilegame = tile - 1; // assuming tiles are 1-gameed
+        const tileX = (tilegame % numberOfColumns) * tileWidth;
+        const tileY = Math.floor(tilegame / numberOfColumns) * tileHeight;
+        const targetX = columngame * map.tileSize;
+        const targetY = rowgame * map.tileSize;
         // 0 => empty tile
         ctx.drawImage(
           tileSheet,

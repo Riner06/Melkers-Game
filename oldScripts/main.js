@@ -14,13 +14,13 @@
 
   
 const imgGround = new Image();
-imgGround.src = "./Sprites/ground.png";
+imgGround.src = "./images/ground.png";
 
 const imgSky = new Image();
-imgSky.src = "./Sprites/sky.png";
+imgSky.src = "./images/sky.png";
 
 const imgHero = new Image();
-imgHero.src = "./Sprites/hero-sheet.png";
+imgHero.src = "./images/hero-sheet.png";
 
 function drawBackground() {
   if (imgGround.complete) {

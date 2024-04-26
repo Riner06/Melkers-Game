@@ -63,12 +63,12 @@ li a:hover:not(.active) {
     left: 0;
     bottom: 0;
     width: 100%;
-    /* background-color: green; */
+    background-color: green;
     color: white;
     text-align: center;
     display:left;
     height:50px;
-    /* background-image: url("Sprites/map.png");
+    /* background-image: url("images/map.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
     image-rendering: pixelated; */
@@ -99,7 +99,7 @@ li a:hover:not(.active) {
   }
 
 .background-image{
-    background-image: url("Sprites/sky.png");
+    background-image: url(../images/sky.png);
     background-repeat: no-repeat;
     background-size:cover;
     width:100vw;
@@ -139,4 +139,9 @@ li a:hover:not(.active) {
 .profileImage{
     width: 10vw;
     height: 16vh;
+}
+
+.logo{
+    width:5vw;
+    height:10vh;
 }
