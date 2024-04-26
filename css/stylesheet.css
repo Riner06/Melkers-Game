@@ -19,6 +19,15 @@ header {
     align-items:center;
 }
 
+
+
+
+.pixelify-sans-GameFont {
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: normal;
+}
 ul {
     display: flex;
     list-style: none;
