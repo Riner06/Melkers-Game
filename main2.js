@@ -11,7 +11,9 @@ let characterRow = 2;
 let characterColumn = 2;
 let spriteX = 0;
 let spriteY = 0;
-
+let points = 1;
+const moneyBag = "💰";
+let death = "💣💀";
 
 const imgGround = new Image();
 imgGround.src = "../images/ground.png";
@@ -38,10 +40,10 @@ const map = {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 13, 6, 6],
-    [0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 17, 6, 6],
+    [0, 6, 6, 18, 6, 6, 6, 6, 6, 6, 6, 6, 17, 6, 6],
     [0, 6, 13, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
     [0, 6, 17, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-    [0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 20, 6, 6],
+    [0, 6, 6, 6, 6, 6, 6, 19 , 6, 6, 6, 6, 20, 6, 6],
     [0, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11]  
   ],
   getTile(row, column) {
@@ -72,30 +74,125 @@ function walkable(row, column){
   return false;
 }
 
-function popUp(object){
+
+function popUpTree(object){
+  
   let text;
   let person = prompt("What's the name of a :", object).toLowerCase()
   
   if(person == "arból" | person =="arbol"){
     alert("Correct")
-  }
-  else if(person == "casa"){
-    alert("Correct")
+    document.getElementById("points").innerHTML = points++ + moneyBag;
   }
   else{
     alert("Try again")
+    document.getElementById("points").innerHTML = death;
+
   }
   document.getElementById("demo").innerHTML = text;
 }
+
+function popUpHouse(object){
+  
+  let text;
+  let person = prompt("What's the name of a :", object).toLowerCase()
+  
+  if(person == "casa"){
+    alert("Correct")
+    document.getElementById("points").innerHTML = points++ + moneyBag;
+  }
+  else{
+    alert("Try again")
+    document.getElementById("points").innerHTML = death;
+
+  }
+  document.getElementById("demo").innerHTML = text;
+}
+
+function popUpBush(object){
+  
+  let text;
+  let person = prompt("What's the name of a :", object).toLowerCase()
+  
+  if(person == "arbusto"){
+    alert("Correct")
+    document.getElementById("points").innerHTML = points++ + moneyBag;
+  }
+  else{
+    alert("Try again")
+    document.getElementById("points").innerHTML = death;
+
+  }
+  document.getElementById("demo").innerHTML = text;
+}
+
+function popUpStone(object){
+  
+  let text;
+  let person = prompt("What's the name of a :", object).toLowerCase()
+
+  if(person == "piedra"){
+    alert("Correct")
+    document.getElementById("points").innerHTML = points++ + moneyBag;
+  }
+  else{
+    alert("Try again")
+    document.getElementById("points").innerHTML = death;
+
+  }
+  document.getElementById("demo").innerHTML = text;
+// }
+// function popUp(object){
+  
+//   let text;
+//   let person = prompt("What's the name of a :", object).toLowerCase()
+  
+//   if(person == "arból" | person =="arbol"){
+//     alert("Correct")
+//     document.getElementById("points").innerHTML = points++ + moneyBag;
+//   }
+//   else if(person == "casa"){
+//     alert("Correct")
+//     document.getElementById("points").innerHTML = points++ + moneyBag;
+//   }
+//   else if(person == "arbusto"){
+//     alert("Correct")
+//     document.getElementById("points").innerHTML = points++ + moneyBag;
+//   }
+//   else if(person == "piedra"){
+//     alert("Correct")
+//     document.getElementById("points").innerHTML = points++ + moneyBag;
+//   }
+//   else{
+//     alert("Try again")
+//     document.getElementById("points").innerHTML = death;
+
+//   }
+//   document.getElementById("demo").innerHTML = text;
+}
+
 function gameEvent(row,column){
   let eventTiles = [17,20]
   if (map.getTile(row,column) == 17) {
     console.log("Tree!")
-    popUp("Tree in Spanish")
+    // popUp("Tree in Spanish")
+    popUpTree("Tree in Spanish")
   }
   else if(map.getTile(row,column) == 20) {
     console.log("House!")
-    popUp("House in Spanish")
+    // popUp("House in Spanish")
+    popUpHouse("House in Spanish")
+    // document.getElementById("points").innerHTML = points++ + moneyBag;
+  }
+  else if(map.getTile(row,column) == 18){
+    console.log("Bush!")
+    // popUp("Bush in Spanish")
+    popUpBush("Bush in Spanish")
+  }
+  else if(map.getTile(row,column) == 19){
+    console.log("Stone!")
+    popUpStone("Stone in Spanish")
+    // popUp("Stone in Spanish")
   }
   if (row >= 0 && row < map.rows && column >= 0 && column < map.cols) {
     // Check if the tile is in the unwalkableTiles array
@@ -136,8 +233,9 @@ function drawTileMap(){
       }
     }
   }
+
 }
- 
+
 
 tileSheet.onload = drawBackground
 function drawBackground() {
@@ -180,13 +278,13 @@ function walk(event) {
   if (event.key === "w" || event.key === "ArrowUp") {
     console.log('w');
     // characterPosY -= speed;
+    gameEvent(characterRow-1,characterColumn)
     if(walkable( characterRow-1, characterColumn)){
       characterRow -= 1;
     }
     // if(gameEvent( characterRow-1, characterColumn)){
     //   console.log("träd")
     // }
-    gameEvent(characterRow-1,characterColumn)
 
     if(timeElapsed === firstTime){
         spriteX = 32;
@@ -216,13 +314,13 @@ function walk(event) {
   if(event.key === "s" || event.key === "ArrowDown"){
     console.log('s');
     // characterPosY += speed;
+    gameEvent(characterRow+1,characterColumn)
     if(walkable(characterRow+1, characterColumn)){
       characterRow += 1;
     }
     // if(gameEvent( characterRow+1, characterColumn)){
     //   console.log("träd")
     // }
-    gameEvent(characterRow+1,characterColumn)
 
     
     if (timeElapsed >= firstTime && timeElapsed < secondTime) {
@@ -241,13 +339,13 @@ function walk(event) {
   if(event.key === "a" || event.key === "ArrowLeft"){
     console.log('a');
     // characterPosX -= speed;
+    gameEvent(characterRow,characterColumn-1)
     if(walkable(characterRow, characterColumn-1)){
       characterColumn -= 1;
     }
     // if(gameEvent( characterRow, characterColumn-1)){
     //   console.log("träd")
     // }
-    gameEvent(characterRow,characterColumn-1)
 
     if (timeElapsed >= firstTime && timeElapsed < secondTime) {
         spriteX = 32;
@@ -264,6 +362,7 @@ function walk(event) {
   if(event.key === "d" || event.key === "ArrowRight"){
     console.log('d');
     // characterPosX += speed;
+    gameEvent(characterRow,characterColumn+1)
     if(walkable(characterRow, characterColumn+1)){
       characterColumn += 1;
     }
@@ -271,7 +370,6 @@ function walk(event) {
     //   console.log("träd")
     // }
 
-    gameEvent(characterRow,characterColumn+1)
 
     if (timeElapsed >= firstTime && timeElapsed < secondTime) {
         spriteX = 32;
