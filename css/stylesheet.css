@@ -1,6 +1,6 @@
 body {
     padding: 0px 0px;
-    overflow: hidden;
+    /* overflow: hidden; */
     margin:0;
 }
 
@@ -189,15 +189,18 @@ table, th, td {
   border:1px solid black;
 }
 
-.Header-and-footer-rows{
+.high-scores-header-and-footer{
   background-color:rgb(35, 130, 189);
 }
-.middle-rows{
+.high-scores-row{
   background-color:lightskyblue;
 }
 
 .spinning-coin{
-  width:5%;
+  width:4%;
+  content:url("../images/coin-shine1.gif");
+
+  
 }
 
 /* Style inputs with type="text", select elements and textareas */

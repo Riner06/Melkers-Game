@@ -11,9 +11,42 @@ let characterRow = 2;
 let characterColumn = 2;
 let spriteX = 0;
 let spriteY = 0;
+
+const tileSheetWidth = 64;
+const tileSheetHeight = 80;
+const numberOfColumns = 4; 
+const numberOfRows = 5; 
+const tileWidth = tileSheetWidth / numberOfColumns; 
+const tileHeight = tileSheetHeight / numberOfRows; 
+
 let points = 1;
 const moneyBag = "💰";
-let death = "💣💀";
+const death = "💣💀";
+
+let question = "What is the Spanish word for ";
+
+const interactableObjects = [
+  {
+    "tileSheetIndex": 19,
+    "englishWord": "stone",
+    "spanishWord": "piedra"
+  },
+  {
+    "tileSheetIndex": 17,
+    "englishWord": "tree",
+    "spanishWord": "arbol"
+  },
+  {
+    "tileSheetIndex": 18,
+    "englishWord": "bush",
+    "spanishWord": "arbusto"
+  },
+  {
+    "tileSheetIndex": 20,
+    "englishWord": "house",
+    "spanishWord": "casa"
+  }
+]
 
 const imgGround = new Image();
 imgGround.src = "../images/ground.png";
@@ -30,7 +63,11 @@ imgShadow.src = "../images/shadow.png";
 const tileSheet = new Image()
 tileSheet.src = "../images/tilesheet.png"
 
+const tilesheetTreeTopNoBackground = new Image()
+tilesheetTreeTopNoBackground.src = "../images/tilesheetTreeTopNoBackground.png"
 
+const shadowBehindStuff = new Image()
+shadowBehindStuff.src = "../images/shadowBehindStuff.png"
 //GÖr om så att kolumnerna ej är nollbaserade
 const map = {
   cols: 15,
@@ -57,14 +94,9 @@ function getXAndYPosition(row, column){
   const y = row * map.tileSize - halfTileSize -26;
   return [x, y]
 }
-//
-// function walkable(row,column){
-//   return map.getTile(row, column) != 0;
-  
-// }
 
 function walkable(row, column){
-  let unwalkableTiles = [0,17,9,10,11,20]
+  let unwalkableTiles = [0,17,9,10,11,20,18,19]
   // Check if the tile is in the map
   if (row >= 0 && row < map.rows && column >= 0 && column < map.cols) {
     // Check if the tile is in the unwalkableTiles array
@@ -74,139 +106,33 @@ function walkable(row, column){
   return false;
 }
 
+function popUp(object){
 
-function popUpTree(object){
-  
-  let text;
-  let person = prompt("What's the name of a :", object).toLowerCase()
-  
-  if(person == "arból" | person =="arbol"){
+  let answer = prompt(question+object["englishWord"] + "?")
+  if(answer == object.spanishWord){
     alert("Correct")
     document.getElementById("points").innerHTML = points++ + moneyBag;
   }
   else{
     alert("Try again")
     document.getElementById("points").innerHTML = death;
-
-  }
-  document.getElementById("demo").innerHTML = text;
-}
-
-function popUpHouse(object){
-  
-  let text;
-  let person = prompt("What's the name of a :", object).toLowerCase()
-  
-  if(person == "casa"){
-    alert("Correct")
-    document.getElementById("points").innerHTML = points++ + moneyBag;
-  }
-  else{
-    alert("Try again")
-    document.getElementById("points").innerHTML = death;
-
-  }
-  document.getElementById("demo").innerHTML = text;
-}
-
-function popUpBush(object){
-  
-  let text;
-  let person = prompt("What's the name of a :", object).toLowerCase()
-  
-  if(person == "arbusto"){
-    alert("Correct")
-    document.getElementById("points").innerHTML = points++ + moneyBag;
-  }
-  else{
-    alert("Try again")
-    document.getElementById("points").innerHTML = death;
-
-  }
-  document.getElementById("demo").innerHTML = text;
-}
-
-function popUpStone(object){
-  
-  let text;
-  let person = prompt("What's the name of a :", object).toLowerCase()
-
-  if(person == "piedra"){
-    alert("Correct")
-    document.getElementById("points").innerHTML = points++ + moneyBag;
-  }
-  else{
-    alert("Try again")
-    document.getElementById("points").innerHTML = death;
-
-  }
-  document.getElementById("demo").innerHTML = text;
-// }
-// function popUp(object){
-  
-//   let text;
-//   let person = prompt("What's the name of a :", object).toLowerCase()
-  
-//   if(person == "arból" | person =="arbol"){
-//     alert("Correct")
-//     document.getElementById("points").innerHTML = points++ + moneyBag;
-//   }
-//   else if(person == "casa"){
-//     alert("Correct")
-//     document.getElementById("points").innerHTML = points++ + moneyBag;
-//   }
-//   else if(person == "arbusto"){
-//     alert("Correct")
-//     document.getElementById("points").innerHTML = points++ + moneyBag;
-//   }
-//   else if(person == "piedra"){
-//     alert("Correct")
-//     document.getElementById("points").innerHTML = points++ + moneyBag;
-//   }
-//   else{
-//     alert("Try again")
-//     document.getElementById("points").innerHTML = death;
-
-//   }
-//   document.getElementById("demo").innerHTML = text;
-}
-
-function gameEvent(row,column){
-  let eventTiles = [17,20]
-  if (map.getTile(row,column) == 17) {
-    console.log("Tree!")
-    // popUp("Tree in Spanish")
-    popUpTree("Tree in Spanish")
-  }
-  else if(map.getTile(row,column) == 20) {
-    console.log("House!")
-    // popUp("House in Spanish")
-    popUpHouse("House in Spanish")
-    // document.getElementById("points").innerHTML = points++ + moneyBag;
-  }
-  else if(map.getTile(row,column) == 18){
-    console.log("Bush!")
-    // popUp("Bush in Spanish")
-    popUpBush("Bush in Spanish")
-  }
-  else if(map.getTile(row,column) == 19){
-    console.log("Stone!")
-    popUpStone("Stone in Spanish")
-    // popUp("Stone in Spanish")
-  }
-  if (row >= 0 && row < map.rows && column >= 0 && column < map.cols) {
-    // Check if the tile is in the unwalkableTiles array
-    return eventTiles.includes(map.getTile(row, column));
   }
 }
+
+
+function gameEvent2(row,column){
+  let tileSheetIndex = map.getTile(row,column);
+  let foundObjects = interactableObjects.filter(interactableObject => {
+    return interactableObject.tileSheetIndex === tileSheetIndex
+  })
+  if (foundObjects.length !== 0){
+    popUp(foundObjects[0])
+  }
+}
+
 //Hjälp av fader
 function drawTileMap(){
-  const tileSheetWidth = 64;
-  const tileSheetHeight = 80;
-  const numberOfColumns = 4; 
-  const numberOfRows = 5; 
-  const tileWidth = tileSheetWidth / numberOfColumns; 
-  const tileHeight = tileSheetHeight / numberOfRows; 
+ 
 
   for(let rowgame = 0; rowgame < map.rows; rowgame++) {
     for (let columngame = 0; columngame < map.cols; columngame++) { 
@@ -235,13 +161,44 @@ function drawTileMap(){
   }
 
 }
+function drawTilesOverCharacter(){
 
+
+  for(let rowgame = 0; rowgame < map.rows; rowgame++) {
+    for (let columngame = 0; columngame < map.cols; columngame++) { 
+      const tile = map.getTile(rowgame, columngame);
+      if (tile == 13) {
+        
+        //Replace tilegame with row column acess of tileSheet
+        const tilegame = tile - 1; // assuming tiles are 1-gameed
+        const tileX = (tilegame % numberOfColumns) * tileWidth;
+        const tileY = Math.floor(tilegame / numberOfColumns) * tileHeight;
+        const targetX = columngame * map.tileSize;
+        const targetY = rowgame * map.tileSize;
+        // 0 => empty tile
+
+        ctx.drawImage(
+          tilesheetTreeTopNoBackground,
+          tileX,
+          tileY,
+          tileWidth,
+          tileHeight,
+          targetX,
+          targetY,
+          map.tileSize, // target width
+          map.tileSize, // target height
+        );
+
+      }
+    }
+  }
+
+}
 
 tileSheet.onload = drawBackground
 function drawBackground() {
   if (tileSheet.complete) {
      ctx.drawImage(imgSky, 0, 0, canvas.width, canvas.height);
-    // ctx.drawImage(imgGround, 0, 0, canvas.width, canvas.height);
     drawTileMap()
   }
 }
@@ -250,11 +207,14 @@ function drawCharacter(){
 if (imgHero.complete) {
     ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
     drawBackground(); // Redraw the background
+
     drawTileMap(); // Redraw the tilemap
     const [x, y] = getXAndYPosition(characterRow, characterColumn)
     ctx.drawImage(imgShadow,0,0,characterWidth,characterHeight,x,y,128,128)
 
   ctx.drawImage(imgHero, spriteX, spriteY, characterWidth, characterHeight, x, y, 128, 128);
+  drawTilesOverCharacter()
+
 }
 }
 
@@ -278,14 +238,11 @@ function walk(event) {
   if (event.key === "w" || event.key === "ArrowUp") {
     console.log('w');
     // characterPosY -= speed;
-    gameEvent(characterRow-1,characterColumn)
+    gameEvent2(characterRow-1,characterColumn)
     if(walkable( characterRow-1, characterColumn)){
       characterRow -= 1;
     }
-    // if(gameEvent( characterRow-1, characterColumn)){
-    //   console.log("träd")
-    // }
-
+  
     if(timeElapsed === firstTime){
         spriteX = 32;
         spriteY = 64;
@@ -314,13 +271,10 @@ function walk(event) {
   if(event.key === "s" || event.key === "ArrowDown"){
     console.log('s');
     // characterPosY += speed;
-    gameEvent(characterRow+1,characterColumn)
+    gameEvent2(characterRow+1,characterColumn)
     if(walkable(characterRow+1, characterColumn)){
       characterRow += 1;
     }
-    // if(gameEvent( characterRow+1, characterColumn)){
-    //   console.log("träd")
-    // }
 
     
     if (timeElapsed >= firstTime && timeElapsed < secondTime) {
@@ -339,14 +293,11 @@ function walk(event) {
   if(event.key === "a" || event.key === "ArrowLeft"){
     console.log('a');
     // characterPosX -= speed;
-    gameEvent(characterRow,characterColumn-1)
+    gameEvent2(characterRow,characterColumn-1)
     if(walkable(characterRow, characterColumn-1)){
       characterColumn -= 1;
     }
-    // if(gameEvent( characterRow, characterColumn-1)){
-    //   console.log("träd")
-    // }
-
+ 
     if (timeElapsed >= firstTime && timeElapsed < secondTime) {
         spriteX = 32;
         spriteY = 96;
@@ -362,15 +313,11 @@ function walk(event) {
   if(event.key === "d" || event.key === "ArrowRight"){
     console.log('d');
     // characterPosX += speed;
-    gameEvent(characterRow,characterColumn+1)
+    gameEvent2(characterRow,characterColumn+1)
     if(walkable(characterRow, characterColumn+1)){
       characterColumn += 1;
     }
-    // if(gameEvent( characterRow, characterColumn+1)){
-    //   console.log("träd")
-    // }
-
-
+   
     if (timeElapsed >= firstTime && timeElapsed < secondTime) {
         spriteX = 32;
       spriteY = 32;
