@@ -4,6 +4,18 @@ body {
     margin:0;
 }
 
+@media screen and (max-width: 600px) {
+  body .main-content .columns {
+    overflow: auto;
+    margin-bottom: 50%;
+  }
+  
+}
+
+#ScrollOff{
+  overflow: hidden;
+}
+
 button{
     padding: 5px 5px;
     flex-direction: row;
@@ -24,7 +36,6 @@ header {
 
 .pixelify-sans-GameFont {
   font-family: "Pixelify Sans", sans-serif;
-  font-optical-sizing: auto;
   font-weight: 100;
   font-style: normal;
 }
@@ -36,12 +47,6 @@ ol{
  margin-bottom: 100%;
 }
 
-
-
-/* li {
-  float: right;
-  
-} */
 
 
 li a {
@@ -78,13 +83,8 @@ li a:hover:not(.active) {
     background-color: green;
     color: white;
     text-align: center;
-    display:left;
     height:50px;
-    /* background-image: url("images/map.png");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    image-rendering: pixelated; */
-    
+ 
 
 }
 
@@ -92,7 +92,6 @@ li a:hover:not(.active) {
 .main-content {
     display: grid;
     grid-template-columns: 50% 50%;
-    /* margin-top:10%; */
     
   }
 
@@ -105,7 +104,7 @@ li a:hover:not(.active) {
     font-size: 90%;
     text-align: left;
     width: 80%;
-    height: 100vh;
+    min-height: 100vh;
     margin-top:15%;
     margin-bottom:15%;
     margin-left: 10%;
@@ -113,27 +112,19 @@ li a:hover:not(.active) {
     padding: 1px 1px;
     position: relative;
   }
-/* 
-  .background-image{
-    background-image: url(../images/sky.png);
-    background-repeat: no-repeat;
-    background-size:cover;
-    width:100vw;
-    height:100vh;
-    background-attachment:fixed;
-    image-rendering: pixelated;
-} */
+
 
 .background-image{
     background-image: url(../images/sky.png);
     background-repeat: repeat;
     background-size:cover;
     width:100%;
+    
     background-attachment:fixed;
     image-rendering: pixelated;
+    
 }
 
-/* styling search bar */
 .search input[type=text] {
     width: 25vw;
     height: 5vh;
@@ -162,24 +153,25 @@ li a:hover:not(.active) {
 }
 
 .profileImage{
-    width: 10vw;
     height: 16vh;
-    animation-name: heroWalk;
+    max-width: 20vw;
+    animation-name: heroJump;
     animation-duration: 2s;
     position: relative;
     animation-iteration-count: infinite;
 
 }
 
-@keyframes heroWalk {
+@keyframes heroJump {
   0%   {left:0px; top:0px;}
   50%  {left:0px; top:20px;}
  
   100% {left:0px; top:0px;}
 }
 .logo{
-    width:5vw;
     height:10vh;
+    max-width:15vw;
+    
 }
 
 table{
@@ -198,21 +190,20 @@ table, th, td {
 
 .spinning-coin{
   width:4%;
-  content:url("../images/coin-shine1.gif");
+  /* content:url("../images/coin-shine1.gif"); */
 
   
 }
 
-/* Style inputs with type="text", select elements and textareas */
 input[type=text], select, textarea {
-  width: 100%; /* Full width */
-  padding: 12px; /* Some padding */ 
-  border: 1px solid #ccc; /* Gray border */
-  border-radius: 4px; /* Rounded borders */
-  box-sizing: border-box; /* Make sure that padding and width stays in place */
-  margin-top: 6px; /* Add a top margin */
-  margin-bottom: 16px; /* Bottom margin */
-  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+  width: 100%;
+  padding: 12px;  
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+  box-sizing: border-box; 
+  margin-top: 6px; 
+  margin-bottom: 16px; 
+  resize: vertical 
 }
 input[type=submit] {
   background-color: #04AA6D;

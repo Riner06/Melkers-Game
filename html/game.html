@@ -1,64 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/stylesheet.css">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
 
-    <script src="https://kit.fontawesome.com/087c7d1b39.js" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/x-icon" href="../images/Namnlös design.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
+      rel="stylesheet"
+    >
+
+    <script
+      src="https://kit.fontawesome.com/087c7d1b39.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="icon" type="image/x-icon" href="../images/logo.png" >
 
     <title class="pixelify-sans-GameFont">Vocabulary Voyagers</title>
+  </head>
+  <body id="ScrollOff">
+    <header>
+      <img class="logo" src="../images/logo.png" alt="Logo">
+      <ul>
+        <li>
+          <a class="active pixelify-sans-GameFont" href="../html/game.html"
+            >Game</a
+          >
+        </li>
+        <li>
+          <a class="pixelify-sans-GameFont" href="../html/about.html">About</a>
+        </li>
+        <li>
+          <a
+            class="fa fa-user pixelify-sans-GameFont"
+            href="../html/user.html"
+          ></a>
+        </li>
+      </ul>
+    </header>
 
-</head>
-<body>
-<!--     
-    <h1>RPG</h1>
-    <div id="button1">  <button>Hej</button></div>
-    <div id="button2">    <button>Hejdå</button></div>
-    <div id="button3"> <button>dåHej</button></div>
-    -->
-<!-- <ul>
-    <div class="right-column-menu">
-        <li><a class="fa fa-user" href="user.html"></a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="friends.html">Friends</a></li>
-        <li><a class="active"href="game.html">Game</a></li>
+    <div class="footer">
+      <p id="points" class="pixelify-sans-GameFont"></p>
     </div>
-        <li><a class="logo" href="game.html"><img src="images/Namnlös design.png" alt="Logo" width="50vw" height="50vh"></a></li>
-
-  </ul> -->
-
-  <header>
-    <img class="logo" src="../images/Namnlös design.png" alt="Logo" >
-    <ul>
-        <!-- <a class="logo" href="game.html"></a> -->
-
-        <li><a class="active pixelify-sans-GameFont"href="../html/game.html">Game</a></li>
-        <li><a class="pixelify-sans-GameFont"href="../html/about.html">About</a></li>
-        <li><a class="fa fa-user pixelify-sans-GameFont" href="../html/user.html"></a></li>
-      
-      
-
-    </ul>
-    
-  </header>
-
-
-  
-<div class="footer">
-    
-        <!-- <li><a class="fa-regular fa-map" onclick=""></a></li> -->
-        <p id="points" class="pixelify-sans-GameFont"></p>
-       
-    
-  </div>
-    <!-- <button id="TilemapButton">Tilemap Editor</button> -->
     <canvas id="canvas" width="1080" height="1200"></canvas>
-    <script src="../main2.js"></script>
-</body>
+    <script src="../js/main2.js"></script>
+  </body>
 </html>
