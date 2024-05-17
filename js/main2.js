@@ -1,4 +1,3 @@
-
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
@@ -14,10 +13,10 @@ let spriteY = 0;
 
 const tileSheetWidth = 64;
 const tileSheetHeight = 80;
-const numberOfColumns = 4; 
-const numberOfRows = 5; 
-const tileWidth = tileSheetWidth / numberOfColumns; 
-const tileHeight = tileSheetHeight / numberOfRows; 
+const numberOfColumns = 4;
+const numberOfRows = 5;
+const tileWidth = tileSheetWidth / numberOfColumns;
+const tileHeight = tileSheetHeight / numberOfRows;
 
 let points = 1;
 const moneyBag = "💰";
@@ -27,30 +26,30 @@ const question = "What is the Spanish word for ";
 
 const interactableObjects = [
   {
-    "tileSheetIndex": 19,
-    "englishWord": "stone",
-    "spanishWord": "piedra",
-    "emojii": "🪨"
+    tileSheetIndex: 19,
+    englishWord: "stone",
+    spanishWord: "piedra",
+    emojii: "🪨",
   },
   {
-    "tileSheetIndex": 17,
-    "englishWord": "tree",
-    "spanishWord": "arbol",
-    "emojii": "🌲"
+    tileSheetIndex: 17,
+    englishWord: "tree",
+    spanishWord: "arbol",
+    emojii: "🌲",
   },
   {
-    "tileSheetIndex": 18,
-    "englishWord": "bush",
-    "spanishWord": "arbusto",
-    "emojii": "🌳"
+    tileSheetIndex: 18,
+    englishWord: "bush",
+    spanishWord: "arbusto",
+    emojii: "🌳",
   },
   {
-    "tileSheetIndex": 20,
-    "englishWord": "house",
-    "spanishWord": "casa",
-    "emojii": "🏡"
-  }
-]
+    tileSheetIndex: 20,
+    englishWord: "house",
+    spanishWord: "casa",
+    emojii: "🏡",
+  },
+];
 
 const imgGround = new Image();
 imgGround.src = "../images/ground.png";
@@ -64,15 +63,12 @@ imgHero.src = "../images/hero-sheet.png";
 const imgShadow = new Image();
 imgShadow.src = "../images/shadow.png";
 
-const tilesheet = new Image()
-tilesheet.src = "../images/tilesheet.png"
+const tilesheet = new Image();
+tilesheet.src = "../images/tilesheet.png";
 
-const shadowBehindStuff = new Image()
-shadowBehindStuff.src = "../images/shadowBehindStuff.png"
-//GÖr om så att kolumnerna ej är nollbaserade
-// if(tileSheetIndex == "sky"){
+const shadowBehindStuff = new Image();
+shadowBehindStuff.src = "../images/shadowBehindStuff.png";
 
-// }
 const map = {
   numberOfColumns: 15,
   numberOfRows: 8,
@@ -84,25 +80,24 @@ const map = {
     [0, 6, 6, 18, 6, 6, 6, 6, 6, 6, 6, 6, 17, 6, 6],
     [0, 6, 13, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
     [0, 6, 17, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-    [0, 6, 6, 6, 6, 6, 6, 19 , 6, 6, 6, 6, 20, 6, 6],
-    [0, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11]  
-    
+    [0, 6, 6, 6, 6, 6, 6, 19, 6, 6, 6, 6, 20, 6, 6],
+    [0, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11],
   ],
   getTile(row, column) {
     return this.tiles[row][column];
   },
 };
 
-function getXAndYPosition(row, column){
+function getXAndYPosition(row, column) {
   const tileOffset = 26;
   halfTileSize = map.tileSize / 2;
   const x = column * map.tileSize - halfTileSize;
   const y = row * map.tileSize - halfTileSize - tileOffset;
-  return [x, y]
+  return [x, y];
 }
 
-function walkable(row, column){
-  const unwalkableTiles = [0,17,9,10,11,20,18,19]
+function walkable(row, column) {
+  const unwalkableTiles = [0, 17, 9, 10, 11, 20, 18, 19];
   if (!tileInMap(row, column)) {
     return false;
   }
@@ -111,51 +106,54 @@ function walkable(row, column){
 }
 
 function tileInMap(row, column) {
-  return row >= 0 && row < map.numberOfRows && column >= 0 && column < map.numberOfColumns;
+  return (
+    row >= 0 &&
+    row < map.numberOfRows &&
+    column >= 0 &&
+    column < map.numberOfColumns
+  );
 }
 
-function popUp(object){
-
-  let answer = prompt(question+object["englishWord"] + "?" + object["emojii"]).toLowerCase( )
-  if(answer == object.spanishWord){
-    alert("Correct")
+function popUp(object) {
+  let answer = prompt(
+    question + object["englishWord"] + "?" + object["emojii"]
+  ).toLowerCase();
+  if (answer == object.spanishWord) {
+    alert("Correct");
     document.getElementById("points").innerHTML = points++ + moneyBag;
-  }
-  else{
+  } else {
     // Reseting points
-    points=1;
-    alert("Try again")
+    points = 1;
+    alert("Try again");
     document.getElementById("points").innerHTML = death;
   }
 }
 
-
-function quizUserEvent(row,column){
-  let tileSheetIndex = map.getTile(row,column);
-  let foundObjects = interactableObjects.filter(interactableObject => {
-    return interactableObject.tileSheetIndex === tileSheetIndex
-  })
-  if (foundObjects.length !== 0){
-    popUp(foundObjects[0])
+function quizUserEvent(row, column) {
+  let tileSheetIndex = map.getTile(row, column);
+  let foundObjects = interactableObjects.filter((interactableObject) => {
+    return interactableObject.tileSheetIndex === tileSheetIndex;
+  });
+  if (foundObjects.length !== 0) {
+    popUp(foundObjects[0]);
   }
 }
 
-function drawTileMap(){
-  for(let row = 0; row < map.numberOfRows; row++) {
-    for (let column = 0; column < map.numberOfColumns; column++) { 
+function drawTileMap() {
+  for (let row = 0; row < map.numberOfRows; row++) {
+    for (let column = 0; column < map.numberOfColumns; column++) {
       const tile = map.getTile(row, column);
       if (tile !== 0) {
-        //Replace tilegame with row column acess of tileSheet
+        //Replace tilegame with row column access of tileSheet
         drawTile(row, column, tile);
       }
     }
   }
 }
 
-
-function drawTilesOverCharacter(){
-  for(let row = 0; row < map.numberOfRows; row++) {
-    for (let column = 0; column < map.numberOfColumns; column++) { 
+function drawTilesOverCharacter() {
+  for (let row = 0; row < map.numberOfRows; row++) {
+    for (let column = 0; column < map.numberOfColumns; column++) {
       const tile = map.getTile(row, column);
       if (tile == 13) {
         drawTile(row, column, 14);
@@ -184,50 +182,54 @@ function drawTile(row, column, tile) {
   );
 }
 
-tilesheet.onload = drawBackground
+tilesheet.onload = drawBackground;
 function drawBackground() {
   if (tilesheet.complete) {
-     ctx.drawImage(imgSky, 0, 0, canvas.width, canvas.height);
-    drawTileMap()
+    ctx.drawImage(imgSky, 0, 0, canvas.width, canvas.height);
+    drawTileMap();
   }
 }
 
-function drawCharacter(){
-if (imgHero.complete) {
+function drawCharacter() {
+  if (imgHero.complete) {
     ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
     drawBackground(); // Redraw the background
 
     drawTileMap(); // Redraw the tilemap
-    const [x, y] = getXAndYPosition(characterRow, characterColumn)
-    ctx.drawImage(imgShadow,0,0,characterWidth,characterHeight,x,y,128,128)
+    const [x, y] = getXAndYPosition(characterRow, characterColumn);
+    ctx.drawImage(
+      imgShadow,
+      0,
+      0,
+      characterWidth,
+      characterHeight,
+      x,
+      y,
+      128,
+      128
+    );
 
-  ctx.drawImage(imgHero, spriteX, spriteY, characterWidth, characterHeight, x, y, 128, 128);
-  drawTilesOverCharacter()
-
+    ctx.drawImage(
+      imgHero,
+      spriteX,
+      spriteY,
+      characterWidth,
+      characterHeight,
+      x,
+      y,
+      128,
+      128
+    );
+    drawTilesOverCharacter();
+  }
 }
-}
 
-document.addEventListener('keydown', walk, false);
+document.addEventListener("keydown", walk, false);
 
 let lastFrameTime = Date.now();
 let currentFrameTime = Date.now();
 let timeElapsed = 0;
 const updateInterval = 900; // in ms
-
-// function characterAnimation(){
-//   currentFrameTime = Date.now();
-//   timeElapsed += currentFrameTime - lastFrameTime;
-//   lastFrameTime = currentFrameTime;
-//   const timeFrames = [
-//     "firstTime" = 300,
-//     "secondTime" = 600,
-//     "thirdTime" = 900
-//   ]
-//   timeFrames.forEach(element => {
-//     spriteX
-//   });
-// }
-
 
 function walk(event) {
   currentFrameTime = Date.now();
@@ -236,62 +238,59 @@ function walk(event) {
   firstTime = 300;
   secondTime = 600;
   thirdTime = 900;
-  
+
   if (event.key === "w" || event.key === "ArrowUp") {
-    quizUserEvent(characterRow-1, characterColumn)
-    if(walkable( characterRow-1, characterColumn)){
+    quizUserEvent(characterRow - 1, characterColumn);
+    if (walkable(characterRow - 1, characterColumn)) {
       characterRow -= 1;
     }
     animateWalkingUp();
   }
 
-  if(event.key === "s" || event.key === "ArrowDown"){
-    quizUserEvent(characterRow+1, characterColumn)
-    if(walkable(characterRow+1, characterColumn)){
+  if (event.key === "s" || event.key === "ArrowDown") {
+    quizUserEvent(characterRow + 1, characterColumn);
+    if (walkable(characterRow + 1, characterColumn)) {
       characterRow += 1;
     }
     animateWalkingDown();
   }
 
-  if(event.key === "a" || event.key === "ArrowLeft"){
-    quizUserEvent(characterRow, characterColumn-1)
-    if(walkable(characterRow, characterColumn-1)){
+  if (event.key === "a" || event.key === "ArrowLeft") {
+    quizUserEvent(characterRow, characterColumn - 1);
+    if (walkable(characterRow, characterColumn - 1)) {
       characterColumn -= 1;
     }
     animateWalkingLeft();
   }
 
-  if(event.key === "d" || event.key === "ArrowRight"){
-    quizUserEvent(characterRow, characterColumn+1)
-    if(walkable(characterRow, characterColumn+1)){
+  if (event.key === "d" || event.key === "ArrowRight") {
+    quizUserEvent(characterRow, characterColumn + 1);
+    if (walkable(characterRow, characterColumn + 1)) {
       characterColumn += 1;
     }
     animateWalkingRight();
   }
 }
- 
-GameBox = function()
-{
-    this.lastFrameTime = Date.now();
-    this.currentFrameTime = Date.now();
-    this.timeElapsed = 0;
-    this.updateInterval = 900;       //in ms
-}
 
-GameBox.prototype.gameLoop = function()
-{
-   window.requestAnimationFrame(this.gameLoop.bind(this));
-   this.lastFrameTime = this.currentFrameTime;
-   this.currentFrameTime = Date.now();
-   this.timeElapsed +=  this.currentFrameTime - this.lastFrameTime ;
-   if(this.timeElapsed >= this.updateInterval)
-   {
-      this.timeElapsed = 0;
-      this.draw(); //modify data which is used to render
-   }
-   this.draw();
-   this.lastFrameTime = this.currentFrameTime;
-}
+GameBox = function () {
+  this.lastFrameTime = Date.now();
+  this.currentFrameTime = Date.now();
+  this.timeElapsed = 0;
+  this.updateInterval = 900; //in ms
+};
+
+GameBox.prototype.gameLoop = function () {
+  window.requestAnimationFrame(this.gameLoop.bind(this));
+  this.lastFrameTime = this.currentFrameTime;
+  this.currentFrameTime = Date.now();
+  this.timeElapsed += this.currentFrameTime - this.lastFrameTime;
+  if (this.timeElapsed >= this.updateInterval) {
+    this.timeElapsed = 0;
+    this.draw();
+  }
+  this.draw();
+  this.lastFrameTime = this.currentFrameTime;
+};
 
 function animateWalkingUp() {
   if (timeElapsed === firstTime) {
@@ -309,7 +308,6 @@ function animateWalkingUp() {
   if (timeElapsed >= firstTime && timeElapsed < secondTime) {
     spriteX = 32;
     spriteY = 64;
-
   } else if (timeElapsed >= secondTime && timeElapsed < thirdTime) {
     spriteX = 0;
     spriteY = 64;
@@ -325,7 +323,6 @@ function animateWalkingDown() {
     spriteX = 32;
     spriteY = 0;
   } else if (timeElapsed >= secondTime && timeElapsed < thirdTime) {
-
     spriteX = 0;
     spriteY = 0;
   } else if (timeElapsed >= thirdTime) {
@@ -363,11 +360,6 @@ function animateWalkingRight() {
   }
 }
 
-
-
-
-
-
 function draw() {
   // Clear the canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -376,7 +368,10 @@ function draw() {
   drawCharacter();
   // Call the draw function again
   window.requestAnimationFrame(draw);
-} 
+}
 
-//Hjälp av fader med förklaring 
-Promise.all([tilesheet,imgHero,imgSky].map(img => new Promise(resolve => img.onload = resolve))).then(() =>requestAnimationFrame(draw));
+Promise.all(
+  [tilesheet, imgHero, imgSky].map(
+    (img) => new Promise((resolve) => (img.onload = resolve))
+  )
+).then(() => requestAnimationFrame(draw));
