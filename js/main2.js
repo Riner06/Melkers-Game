@@ -48,7 +48,7 @@ const interactableObjects = [
     englishWord: "house",
     spanishWord: "casa",
     emojii: "🏡",
-  },
+  }
 ];
 
 const imgGround = new Image();

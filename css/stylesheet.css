@@ -39,9 +39,9 @@ header {
   font-weight: 100;
   font-style: normal;
 }
-ul {
+header ul {
     display: flex;
-    list-style: none;
+    list-style:none;
 }
 ol{
  margin-bottom: 100%;
@@ -49,7 +49,7 @@ ol{
 
 
 
-li a {
+header li a {
   display: block;
   color: white;
   text-align: center;
@@ -58,7 +58,7 @@ li a {
   border-radius:10%;
 }
 
-li a:hover:not(.active) {
+header li a:hover:not(.active) {
   background-color: black;
 }
 
@@ -91,8 +91,7 @@ li a:hover:not(.active) {
 
 .main-content {
     display: grid;
-    grid-template-columns: 50% 50%;
-    
+    grid-template-columns: 50% 50%; 
   }
 
  
@@ -168,10 +167,10 @@ li a:hover:not(.active) {
  
   100% {left:0px; top:0px;}
 }
+
 .logo{
     height:10vh;
     max-width:15vw;
-    
 }
 
 table{
@@ -226,6 +225,18 @@ input[type=submit]:hover {
 
 textarea{
   height: 50px;
+}
+
+.name-email-container {
+  margin-bottom: 10px;
+}
+
+.name-email-container ul {
+  list-style: none;
+}
+
+.popdown-hide {
+  display: none;
 }
 
 

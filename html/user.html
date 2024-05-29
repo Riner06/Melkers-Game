@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/stylesheet.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/stylesheet.css" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
       rel="stylesheet"
-    >
+    />
 
     <script
       src="https://kit.fontawesome.com/087c7d1b39.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="icon" type="image/x-icon" href="../images/logo.png">
+    <link rel="icon" type="image/x-icon" href="../images/logo.png" />
 
     <title class="pixelify-sans-GameFont">Vocabulary Voyagers</title>
   </head>
   <body>
     <header>
-      <img class="logo" src="../images/logo.png" alt="Logo">
+      <img class="logo" src="../images/logo.png" alt="Logo" />
 
       <ul>
         <li>
@@ -48,23 +48,26 @@
             src="../images/hero-sheet-kopia.png"
             class="profileImage"
             alt="UserAvatar"
-          >
+          />
         </div>
         <div class="columns">
           <h1 class="pixelify-sans-GameFont">Friends</h1>
 
           <div class="search">
-            <form action="#">
+            <form method="get">
               <input
                 class="pixelify-sans-GameFont"
                 type="text"
-                placeholder="Search for Freinds"
-                name="search"
-              >
+                placeholder="Search for Friends"
+                name="name"
+                id="searchInput"
+              />
               <button>
                 <i class="fa fa-search" style="font-size: 18px"></i>
               </button>
             </form>
+            <div id="foundFriends"></div>
+            <div id="userDetails"></div>
           </div>
         </div>
       </div>
@@ -74,4 +77,5 @@
       <p>...</p>
     </div>
   </body>
+  <script src="../js/fetchfromapi.js"></script>
 </html>
